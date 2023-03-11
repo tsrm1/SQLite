@@ -11,7 +11,7 @@
 import sqlite3
 from sqlite3 import Error
 
-db_file_name = 'data.db'
+db_file_name = 'sqlite_base.db'
 db_table_name = 'users'
 db_table_name_columns = 'user_id TEXT, user_name TEXT, user_age INT, user_password TEXT'
 

@@ -12,7 +12,7 @@ import sqlite3
 from sqlite3 import Error
 from datetime import datetime
 
-db_file_name = 'data.db'
+db_file_name = 'sqlite_base.db'
 db_table_name = 'users_data'
 db_table_name_columns = 'user_id INTEGER, user_name TEXT, birth_date TEXT, register_date TEXT, modify_date TEXT'
 
@@ -100,11 +100,12 @@ def view_older_user(date: int):
     db = connect_sql()
     cur = create_sql_table(db)
     cur.execute(
-        f"SELECT ROWID, * FROM users_data WHERE birth_date > {date} ORDER BY birth_date DESC")
+        f"SELECT ROWID, * FROM users_data WHERE birth_date > {date} ORDER BY birth_date DESC LIMIT 5")
     # SELECT ROWID, * - сделать выборку по ROWID (номер записи) и * (все столбцы)
     # FROM users - из таблицы user
     # WHERE user_age >= age - используем условие выборки, где user_age >= age   (<, <>, =, >=, <=)
     # ORDER BY user_age DESC - упорядочить по user_age по возрастанию, DESC - по убыванию
+    # LIMIT 5 - выдать первые 5 записей
 
     items = cur.fetchall()                          # выбрать все записи из выборки
     # print(cur.fetchmany(2))                       # выбрать только первые 2 записи из выборки
